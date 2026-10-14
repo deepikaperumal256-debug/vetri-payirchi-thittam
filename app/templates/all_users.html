@@ -1,0 +1,85 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBuddy - All Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+            padding: 30px;
+            color: #263238;
+        }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+        h1 {
+            color: #176b57;
+        }
+        .user-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 3px 12px #00000010;
+            overflow-wrap: anywhere;
+        }
+        .plan {
+            background: #f5f8f7;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+        .label {
+            font-weight: bold;
+        }
+        a {
+            color: #176b57;
+        }
+        .empty {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>FitBuddy - All Users</h1>
+    <p>View registered users and their latest workout plans.</p>
+    <p><a href="/">Home</a> | <a href="/feedback">Update Workout Plan</a></p>
+
+    {% if records %}
+        {% for record in records %}
+            <section class="user-card">
+                <h2>{{ record.user.username }}</h2>
+                <p><span class="label">User ID:</span> {{ record.user.user_id }}</p>
+                <p><span class="label">Age:</span> {{ record.user.age }}</p>
+                <p><span class="label">Fitness goal:</span> {{ record.user.goal }}</p>
+                <p><span class="label">Intensity:</span> {{ record.user.intensity }}</p>
+
+                {% if record.plan %}
+                    <h3>Latest Workout Plan</h3>
+                    <div class="plan">{{ record.plan.updated_plan or record.plan.original_plan }}</div>
+
+                    {% if record.plan.last_feedback %}
+                        <h3>Latest Feedback</h3>
+                        <p>{{ record.plan.last_feedback }}</p>
+                    {% endif %}
+                {% else %}
+                    <p>No workout plan is saved for this user.</p>
+                {% endif %}
+            </section>
+        {% endfor %}
+    {% else %}
+        <div class="empty">No users found.</div>
+    {% endif %}
+</div>
+</body>
+</html>
+```

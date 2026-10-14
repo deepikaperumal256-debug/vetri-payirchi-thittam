@@ -1,0 +1,89 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Workout Plan - FitBuddy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f7f2;
+            margin: 0;
+            padding: 25px 15px;
+            color: #26382d;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 28px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000012;
+        }
+        h1 {
+            color: #21834a;
+            text-align: center;
+        }
+        h2 {
+            color: #21834a;
+        }
+        .plan {
+            padding: 18px;
+            background: #f7faf7;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+        .nutrition {
+            padding: 15px;
+            background: #edf8ef;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 18px;
+            margin: 8px 5px 0 0;
+            background: #21834a;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+        .center {
+            text-align: center;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FitBuddy - Your Workout Plan</h1>
+
+        {% if user %}
+        <p>Hello, {{ user.username }}!</p>
+        <p>Your fitness goal: {{ user.goal }}</p>
+        <p>Preferred intensity: {{ user.intensity }}</p>
+        {% endif %}
+
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+
+        <h2>Your 7-Day Workout Plan</h2>
+        <div class="plan">{{ plan.updated_plan or plan.original_plan }}</div>
+
+        {% if plan.nutrition_tip %}
+        <h2>Nutrition Tip</h2>
+        <div class="nutrition">{{ plan.nutrition_tip }}</div>
+        {% endif %}
+
+        <div class="center">
+            <a class="button" href="/">Home</a>
+            <a class="button" href="/feedback">Update Plan</a>
+        </div>
+    </div>
+</body>
+</html>
+```

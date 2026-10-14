@@ -1,0 +1,140 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBuddy - Update Plan</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f6fa;
+            margin: 0;
+            padding: 30px 15px;
+            color: #243047;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 30px auto;
+            padding: 28px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .error {
+            color: #b91c1c;
+            background: #fee2e2;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .message {
+            color: #166534;
+            background: #dcfce7;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #2563eb;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>FitBuddy</h1>
+        <h2>Update Your Fitness Plan</h2>
+
+        <p>
+            Enter your User ID and feedback to request an update
+            to your existing fitness plan.
+        </p>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+
+        <form action="/submit-feedback" method="post">
+            <label for="user_id">User ID</label>
+            <input
+                type="text"
+                id="user_id"
+                name="user_id"
+                value="{{ user_id }}"
+                placeholder="Enter your registered User ID"
+                required
+            >
+
+            <label for="feedback">Your Feedback</label>
+            <textarea
+                id="feedback"
+                name="feedback"
+                placeholder="Describe what you would like to change in your plan..."
+                required
+            >{{ feedback }}</textarea>
+
+            <button type="submit">Update My Plan</button>
+        </form>
+
+        <a class="back-link" href="/">Back to Home</a>
+    </main>
+</body>
+</html>
+```

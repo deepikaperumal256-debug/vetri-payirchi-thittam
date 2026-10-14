@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updated Workout Plan | FitBuddy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f7f4;
+            color: #24332b;
+            margin: 0;
+            padding: 24px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: white;
+            padding: 28px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px #00000012;
+        }
+        .success {
+            color: #167342;
+            background: #e8f7ee;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .plan {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            line-height: 1.7;
+            background: #f7f9f7;
+            padding: 18px;
+            border-radius: 8px;
+        }
+        a {
+            display: inline-block;
+            margin: 12px 12px 0 0;
+            color: #176b45;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>FitBuddy</h1>
+        <h2>Your Workout Plan</h2>
+
+        {% if message %}
+        <p class="success">{{ message }}</p>
+        {% endif %}
+
+        {% if user %}
+        <p><strong>User:</strong> {{ user.username }}</p>
+        <p><strong>User ID:</strong> {{ user.user_id }}</p>
+        {% endif %}
+
+        <h3>Updated Plan</h3>
+        <div class="plan">{{ plan.updated_plan or plan.original_plan or "No plan content is available." }}</div>
+
+        {% if plan.last_feedback %}
+        <h3>Your Feedback</h3>
+        <p>{{ plan.last_feedback }}</p>
+        {% endif %}
+
+        {% if plan.updated_at %}
+        <p><small>Last updated: {{ plan.updated_at }}</small></p>
+        {% endif %}
+
+        <a href="/">Generate Another Plan</a>
+        <a href="/feedback">Update Plan Again</a>
+        <a href="/view-all-users">Admin View</a>
+    </main>
+</body>
+</html>

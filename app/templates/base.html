@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FitBuddy{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <a class="brand" href="/">FitBuddy</a>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/feedback">Update Plan</a>
+            <a href="/view-all-users">Admin View</a>
+            <a href="/docs">API Docs</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        FitBuddy · AI Fitness Plan Generator
+        <p>General wellness guidance only. Not a substitute for medical advice.</p>
+    </footer>
+</body>
+</html>

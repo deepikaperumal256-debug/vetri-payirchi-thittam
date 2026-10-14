@@ -1,0 +1,115 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBuddy - Update Workout Plan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f7f5;
+            margin: 0;
+            padding: 30px 16px;
+            color: #24332f;
+        }
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 28px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px #00000012;
+        }
+        h1 {
+            color: #176b57;
+        }
+        label {
+            display: block;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+        input, textarea, button {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            font: inherit;
+            border-radius: 7px;
+        }
+        input, textarea {
+            border: 1px solid #ccd8d3;
+        }
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+        button {
+            margin-top: 22px;
+            border: none;
+            background: #176b57;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #105340;
+        }
+        .error {
+            padding: 12px;
+            border-radius: 7px;
+            background: #fff0f0;
+            color: #a32121;
+        }
+        .message {
+            padding: 12px;
+            border-radius: 7px;
+            background: #eaf8ee;
+            color: #176b35;
+        }
+        a {
+            color: #176b57;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>Update Your Workout Plan</h1>
+        <p>Tell FitBuddy what you would like to change in your existing plan.</p>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+
+        <form action="/submit-feedback" method="post">
+            <label for="user_id">User ID</label>
+            <input
+                type="text"
+                id="user_id"
+                name="user_id"
+                value="{{ user_id or '' }}"
+                required
+                placeholder="Enter your existing User ID"
+            >
+
+            <label for="feedback">Your Feedback</label>
+            <textarea
+                id="feedback"
+                name="feedback"
+                required
+                placeholder="Describe what you want to change..."
+            >{{ feedback or '' }}</textarea>
+
+            <button type="submit">Update Workout Plan</button>
+        </form>
+
+        <p><a href="/">Back to Home</a></p>
+        <p><a href="/view-all-users">View All Users</a></p>
+    </main>
+</body>
+</html>
+```
